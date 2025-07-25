@@ -1,8 +1,8 @@
-
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <signal.h>
 
-void main(void)
+ int main(void)
 {
    
    struct sigaction act;
@@ -11,7 +11,13 @@ void main(void)
    act.sa_flags= 0;           /* Ninguna accion especial */   
    sigemptyset(&act.sa_mask); /* Ninguna señal bloqueada */
 
+   printf("Se imprime, luego se ejecuta");  // fuera del bucle no lo imprime
+
    sigaction(SIGINT, &act, NULL);
 
-   while(1);                  /* Bucle infinito */
+   while(1){
+       //printf("Se imprime, luego se ejecuta");  // lo imprime dentro del bucle, 
+       
+      
+   }                  /* Bucle infinito */
 }
