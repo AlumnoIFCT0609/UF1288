@@ -1,0 +1,30 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#define PORTNUMBER 12563
+
+int main(void)
+{
+    char buf[1024];
+    int s, n, len;
+    char hostname[64];
+    struct sockaddr_in name;
+    struct hostent *hp;
+
+    gethostname(hostname, sizeof(hostname));
+
+    hp = gethostbyname(hostname);
+
+    s=socket(PF_INET,SOCK_STREAM,0);
+    name.sin_family = AF_INET;
+    name.sin_port = htons(PORTNUMBER);
+
+    memcpy(&name.sin_addr, hp-> h_addr_list[0],hp->h_length);
+
+
+
+
+
+}
